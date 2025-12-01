@@ -1,0 +1,496 @@
+// ──────────────────────────────────────────────────────────────
+// FILE: src/lib/storage.ts
+// ──────────────────────────────────────────────────────────────
+export const TERMS_VERSION = '2025-11-01'; // bump when Terms/Privacy change
+export const LS_TERMS = 'cc_terms';
+export const LS_ONB = 'cc_onboarding';
+export const LS_PROFILE = 'cc_profile';
+
+type TermsState = { accepted: boolean; version: string; ts: number };
+type OnbState = { completed: boolean; ts: number; version: string };
+
+export function getTerms(): TermsState | null {
+  const raw = localStorage.getItem(LS_TERMS);
+  return raw ? JSON.parse(raw) : null;
+}
+export function setTerms(accepted: boolean): void {
+  const payload: TermsState = { accepted, version: TERMS_VERSION, ts: Date.now() };
+  localStorage.setItem(LS_TERMS, JSON.stringify(payload));
+}
+
+export function getOnboarding(): OnbState | null {
+  const raw = localStorage.getItem(LS_ONB);
+  return raw ? JSON.parse(raw) : null;
+}
+export function setOnboardingCompleted(): void {
+  const payload: OnbState = { completed: true, version: 'v1', ts: Date.now() };
+  localStorage.setItem(LS_ONB, JSON.stringify(payload));
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/auth/AuthContext.tsx
+// ──────────────────────────────────────────────────────────────
+import React, { createContext, useContext } from 'react';
+
+type User = { id: string; email?: string; name?: string; phone?: string };
+type AuthCtx = {
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  user: User | null;
+  login: () => void;
+  logout: () => void;
+};
+
+const Ctx = createContext<AuthCtx>({
+  isAuthenticated: false,
+  isLoading: false,
+  user: null,
+  login: () => {},
+  logout: () => {},
+});
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Wire this to your real session check (/api/me or Auth0 SPA SDK)
+  const [isAuthenticated, setAuthed] = React.useState(false);
+  const [isLoading, setLoading] = React.useState(false);
+  const [user, setUser] = React.useState<User | null>(null);
+
+  React.useEffect(() => {
+    // TODO: hydrate from server/session if needed
+  }, []);
+
+  const login = () => {
+    // Redirect to server login (Auth0)
+    window.location.href = '/api/login';
+  };
+  const logout = () => {
+    window.location.href = '/api/logout';
+  };
+
+  return (
+    <Ctx.Provider value={{ isAuthenticated, isLoading, user, login, logout }}>
+      {children}
+    </Ctx.Provider>
+  );
+};
+
+export const useAuth = () => useContext(Ctx);
+
+
+// ──────────────────────────────────────────────────────────────
+/* FILE: src/routing/Guards.tsx */
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+import { Redirect } from 'wouter';
+import { useAuth } from '../auth/AuthContext';
+import { getTerms, TERMS_VERSION, getOnboarding } from '../lib/storage';
+
+export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isAuthenticated, isLoading } = useAuth();
+  if (isLoading) return null;
+  if (!isAuthenticated) return <Redirect to="/" />;
+  return <>{children}</>;
+};
+
+export const RequireTerms: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const state = getTerms();
+  const valid = !!state?.accepted && state.version === TERMS_VERSION;
+  if (!valid) return <Redirect to="/terms" />;
+  return <>{children}</>;
+};
+
+export const RequireOnboarding: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const onb = getOnboarding();
+  if (!onb?.completed) return <Redirect to="/onboarding" />;
+  return <>{children}</>;
+};
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Landing.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+import { useAuth } from '../auth/AuthContext';
+
+export default function Landing() {
+  const { login } = useAuth();
+
+  const onStart = () => {
+    // Demo-only auto-accept (NOT recommended for prod)
+    // if (import.meta.env.VITE_DEMO_AUTO_ACCEPT === '1') {
+    //   setTerms(true);
+    //   setOnboardingCompleted();
+    // }
+    login(); // -> /api/login -> Auth0
+  };
+
+  return (
+    <main onClick={onStart} className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <img src="/brand/cartcircle-mark.svg" alt="CartCircle" className="mx-auto h-16 mb-4" />
+        <h1 className="text-2xl font-semibold">CartCircle</h1>
+        <p className="opacity-70 mt-2">Tamil-first ONDC shopping for your neighborhood.</p>
+
+        <button
+          onClick={(e) => { e.stopPropagation(); onStart(); }}
+          className="mt-6 px-5 py-3 rounded-md bg-black text-white"
+        >
+          Get Started
+        </button>
+
+        <div className="mt-3 text-sm opacity-70">
+          Continuing will take you to login. You’ll accept Terms on the next screen.
+        </div>
+      </div>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Terms.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+import { useLocation } from 'wouter';
+import { setTerms, TERMS_VERSION } from '../lib/storage';
+
+export default function Terms() {
+  const [, setLoc] = useLocation();
+  const [checked, setChecked] = React.useState(false);
+
+  const accept = () => {
+    if (!checked) return;
+    setTerms(true);
+    setLoc('/onboarding');
+  };
+
+  return (
+    <div className="max-w-screen-sm mx-auto p-6">
+      <h1 className="text-xl font-semibold">Terms & Privacy</h1>
+      <div className="mt-2 text-sm opacity-70">Version: {TERMS_VERSION}</div>
+
+      <section className="prose mt-6 h-72 overflow-auto border rounded p-4">
+        <h2>1. Introduction</h2>
+        <p>…</p>
+        <h2>2. Data & Consent</h2>
+        <p>…</p>
+        <h2>3. Payments & Orders</h2>
+        <p>…</p>
+      </section>
+
+      <label className="flex items-center gap-2 mt-4">
+        <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
+        <span>I have read and accept the Terms & Privacy Policy.</span>
+      </label>
+
+      <button
+        disabled={!checked}
+        onClick={accept}
+        className="mt-4 px-5 py-3 rounded-md bg-black text-white disabled:opacity-40"
+      >
+        Continue
+      </button>
+    </div>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/onboarding/Onboarding.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+import { useLocation } from 'wouter';
+import { setOnboardingCompleted } from '../../lib/storage';
+
+type Step = 'welcome' | 'permissions' | 'location' | 'profile' | 'tutorial' | 'complete';
+
+export default function Onboarding() {
+  const [, setLoc] = useLocation();
+  const [step, setStep] = React.useState<Step>('welcome');
+
+  const next = () => {
+    setStep((s) => {
+      const order: Step[] = ['welcome','permissions','location','profile','tutorial','complete'];
+      const i = order.indexOf(s);
+      return order[Math.min(i + 1, order.length - 1)];
+    });
+  };
+  const skip = () => next();
+
+  React.useEffect(() => {
+    if (step === 'complete') {
+      setOnboardingCompleted();
+      setLoc('/home');
+    }
+  }, [step, setLoc]);
+
+  return (
+    <div className="max-w-screen-sm mx-auto p-6">
+      {step === 'welcome' && (
+        <Screen title="Vanakkam! 👋"
+          body="CartCircle helps you discover nearby ONDC stores and deals."
+          next={next} skip={skip} />
+      )}
+      {step === 'permissions' && (
+        <Screen title="Permissions"
+          body="We’ll request location (nearby stores) and notifications (order status). You can skip."
+          next={next} skip={skip} />
+      )}
+      {step === 'location' && (
+        <Screen title="Set your location"
+          body="Auto-detect or choose manually. (Plug in your FullscreenLocationModal V3 here.)"
+          next={next} skip={skip} />
+      )}
+      {step === 'profile' && (
+        <Screen title="Profile (optional)"
+          body="First name, phone*, interests to personalize offers."
+          next={next} skip={skip} />
+      )}
+      {step === 'tutorial' && (
+        <Screen title="Quick tour"
+          body="Learn discovery, cart, and order tracking in 30 seconds."
+          next={next} skip={skip} />
+      )}
+      {step === 'complete' && null}
+    </div>
+  );
+}
+
+function Screen({
+  title, body, next, skip,
+}: { title: string; body: string; next: () => void; skip: () => void }) {
+  return (
+    <div>
+      <h1 className="text-xl font-semibold">{title}</h1>
+      <p className="mt-3 opacity-80">{body}</p>
+      <div className="mt-6 flex gap-3">
+        <button onClick={next} className="px-5 py-3 rounded-md bg-black text-white">Continue</button>
+        <button onClick={skip} className="px-5 py-3 rounded-md border">Skip</button>
+      </div>
+    </div>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Home.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+import { Link } from 'wouter';
+
+export default function Home() {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Home</h1>
+      <p className="opacity-70 mt-2">Personalized for your location & interests.</p>
+      <nav className="mt-4 grid gap-3">
+        <Link href="/search" className="underline">Search</Link>
+        <Link href="/cart" className="underline">Cart</Link>
+        <Link href="/orders" className="underline">Orders</Link>
+        <Link href="/profile" className="underline">Profile</Link>
+        <Link href="/support" className="underline">Support</Link>
+        <Link href="/checkout" className="underline">Checkout</Link>
+      </nav>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Search.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+
+export default function Search() {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Search</h1>
+      <p className="opacity-70">Find products, stores, categories.</p>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Cart.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+
+export default function Cart() {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Cart</h1>
+      <p className="opacity-70">Review items, modify quantities, apply coupons.</p>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Orders.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+
+export default function Orders() {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Orders</h1>
+      <p className="opacity-70">Track your orders and view history.</p>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Profile.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+
+export default function Profile() {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Profile</h1>
+      <p className="opacity-70">Manage your details and preferences.</p>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Support.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+
+export default function Support() {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Support</h1>
+      <p className="opacity-70">Need help? Reach us here.</p>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/Checkout.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+
+export default function Checkout() {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Checkout</h1>
+      <ul className="list-disc ml-5 opacity-80">
+        <li>Delivery address</li>
+        <li>Payment method</li>
+        <li>Order summary</li>
+        <li>Place order</li>
+      </ul>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/pages/ProductDetail.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+
+export default function ProductDetail({ id }: { id: string }) {
+  return (
+    <main className="p-4">
+      <h1 className="text-xl font-semibold">Product #{id}</h1>
+      <ul className="list-disc ml-5 opacity-80 mt-2">
+        <li>Images & info</li>
+        <li>Seller details</li>
+        <li>Reviews</li>
+        <li>Add to cart / wishlist</li>
+      </ul>
+    </main>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/App.tsx
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+import { Route, Switch } from 'wouter';
+import { AuthProvider } from './auth/AuthContext';
+import { RequireAuth, RequireTerms, RequireOnboarding } from './routing/Guards';
+import Landing from './pages/Landing';
+import Terms from './pages/Terms';
+import Onboarding from './pages/onboarding/Onboarding';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Cart from './pages/Cart';
+import Orders from './pages/Orders';
+import Profile from './pages/Profile';
+import Support from './pages/Support';
+import Checkout from './pages/Checkout';
+import ProductDetail from './pages/ProductDetail';
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <Switch>
+        <Route path="/" component={Landing} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/onboarding" component={Onboarding} />
+
+        <Route path="/home">
+          <RequireAuth>
+            <RequireTerms>
+              <RequireOnboarding>
+                <Home />
+              </RequireOnboarding>
+            </RequireTerms>
+          </RequireAuth>
+        </Route>
+
+        <Route path="/search">
+          <RequireAuth><RequireTerms><RequireOnboarding><Search /></RequireOnboarding></RequireTerms></RequireAuth>
+        </Route>
+        <Route path="/cart">
+          <RequireAuth><RequireTerms><RequireOnboarding><Cart /></RequireOnboarding></RequireTerms></RequireAuth>
+        </Route>
+        <Route path="/orders">
+          <RequireAuth><RequireTerms><RequireOnboarding><Orders /></RequireOnboarding></RequireTerms></RequireAuth>
+        </Route>
+        <Route path="/profile">
+          <RequireAuth><RequireTerms><RequireOnboarding><Profile /></RequireOnboarding></RequireTerms></RequireAuth>
+        </Route>
+        <Route path="/support">
+          <RequireAuth><RequireTerms><RequireOnboarding><Support /></RequireOnboarding></RequireTerms></RequireAuth>
+        </Route>
+        <Route path="/checkout">
+          <RequireAuth><RequireTerms><RequireOnboarding><Checkout /></RequireOnboarding></RequireTerms></RequireAuth>
+        </Route>
+
+        <Route path="/product/:id">
+          {(params) => (
+            <RequireAuth><RequireTerms><RequireOnboarding><ProductDetail id={params.id} /></RequireOnboarding></RequireTerms></RequireAuth>
+          )}
+        </Route>
+
+        <Route>404</Route>
+      </Switch>
+    </AuthProvider>
+  );
+}
+
+
+// ──────────────────────────────────────────────────────────────
+// FILE: src/main.tsx  (or src/index.tsx depending on your setup)
+// ──────────────────────────────────────────────────────────────
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+// import './index.css'; // Tailwind entry if you use it
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

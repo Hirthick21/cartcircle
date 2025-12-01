@@ -1,0 +1,29 @@
+The above error occurred in the <Home> component:
+
+    at Home (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/pages/home.tsx:34:48)
+    at Route (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:280:16)
+    at Switch (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:336:17)
+    at AppRoutes (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=iyu1qVh6pICdYTDtkRHaI:94:42)
+    at Provider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=d16425b6:38:15)
+    at TooltipProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=d16425b6:61:5)
+    at QueryClientProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=d16425b6:2934:3)
+    at ErrorBoundary (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=iyu1qVh6pICdYTDtkRHaI:39:5)
+    at App
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+ErrorBoundary caught an error: 
+ReferenceError {}
+message: "isMenuOpen is not defined"
+stack: "ReferenceError: isMenuOpen is not defined↵ at Home (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/pages/home.tsx:334:19)↵ at renderWithHooks (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:11548:26)↵ at mountIndeterminateComponent (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:14926:21)↵ at beginWork (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:15914:22)↵ at beginWork$1 (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:19753:22)↵ at performUnitOfWork (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:19198:20)↵ at workLoopSync (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:19137:13)↵ at renderRootSync (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:19116:15)↵ at recoverFromConcurrentError (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:18736:28)↵ at performSyncWorkOnRoot (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=d16425b6:18879:28)"
+get stack: ƒ ()
+set stack: ƒ ()
+[[Prototype]]: Object
+ 
+Object {componentStack: "↵    at Home…"}
+componentStack: "↵ at Home (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/pages/home.tsx:34:48)↵ at Route (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:280:16)↵ at Switch (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:336:17)↵ at AppRoutes (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=iyu1qVh6pICdYTDtkRHaI:94:42)↵ at Provider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=d16425b6:38:15)↵ at TooltipProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=d16425b6:61:5)↵ at QueryClientProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=d16425b6:2934:3)↵ at ErrorBoundary (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=iyu1qVh6pICdYTDtkRHaI:39:5)↵ at App"
+[[Prototype]]: Object
+
+at t.value (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400

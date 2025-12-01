@@ -1,0 +1,41 @@
+[vite] connecting...
+[vite] connected.
+Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
+Cannot read properties of null (reading 'useState')
+Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
+Cannot read properties of null (reading 'useState')
+The above error occurred in the <Toaster> component:
+
+    at Toaster (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/components/ui/toaster.tsx:29:22)
+    at Provider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=9761368b:38:15)
+    at TooltipProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=9761368b:61:5)
+    at QueryClientProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=9761368b:2805:3)
+    at ErrorBoundary (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=EM8X7jjNce2ikRj6aazut:38:5)
+    at App
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+
+at Toaster (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/components/ui/toaster.tsx:29:22)
+at Provider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=9761368b:38:15)
+at TooltipProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=9761368b:61:5)
+at QueryClientProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=9761368b:2805:3)
+at ErrorBoundary (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=EM8X7jjNce2ikRj6aazut:38:5)
+at App
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+at t.value (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
+ErrorBoundary caught an error: 
+TypeError {}
+ 
+Object {componentStack: "↵    at Toaster…"}

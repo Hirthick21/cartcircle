@@ -1,0 +1,25 @@
+The above error occurred in the <Text> component:
+
+    at p
+    at div
+    at div
+    at div
+    at div
+    at MobileContainer (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/components/layout/mobile-container.tsx:18:35)
+    at Home (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/pages/home.tsx:34:48)
+    at Route (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:280:16)
+    at Switch (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:336:17)
+    at AppRoutes (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=eUAGL3xSrYVBHzyYxs1AS:94:42)
+    at Provider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=d16425b6:38:15)
+    at TooltipProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=d16425b6:61:5)
+    at QueryClientProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=d16425b6:2934:3)
+    at ErrorBoundary (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=eUAGL3xSrYVBHzyYxs1AS:39:5)
+    at App
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+ErrorBoundary caught an error: 
+DOMException {}
+ 
+Object {componentStack: "↵    at p↵    at div↵    at div↵    at div↵    at div↵    at MobileContainer…"}
+componentStack: "↵ at p↵ at div↵ at div↵ at div↵ at div↵ at MobileContainer (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/components/layout/mobile-container.tsx:18:35)↵ at Home (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/pages/home.tsx:34:48)↵ at Route (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:280:16)↵ at Switch (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d16425b6:336:17)↵ at AppRoutes (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=eUAGL3xSrYVBHzyYxs1AS:94:42)↵ at Provider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=d16425b6:38:15)↵ at TooltipProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=d16425b6:61:5)↵ at QueryClientProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=d16425b6:2934:3)↵ at ErrorBoundary (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=eUAGL3xSrYVBHzyYxs1AS:39:5)↵ at App"
+[[Prototype]]: Object

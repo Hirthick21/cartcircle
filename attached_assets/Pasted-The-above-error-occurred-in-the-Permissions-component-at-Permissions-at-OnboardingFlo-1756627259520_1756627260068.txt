@@ -1,0 +1,23 @@
+The above error occurred in the <Permissions> component:
+
+    at Permissions
+    at OnboardingFlow (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/components/onboarding/onboarding-flow.tsx:24:42)
+    at Route (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=03185dfd:280:16)
+    at Switch (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=03185dfd:336:17)
+    at AppRoutes (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=nl9hX-IMFQnnTu5KDucPq:95:48)
+    at Provider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=03185dfd:38:15)
+    at TooltipProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=03185dfd:64:5)
+    at QueryClientProvider (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=03185dfd:2934:3)
+    at ErrorBoundary (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/App.tsx?v=nl9hX-IMFQnnTu5KDucPq:40:5)
+    at App
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+ErrorBoundary caught an error: 
+TypeError {message: "Illegal constructor"}
+message: "Illegal constructor"
+stack: "TypeError: Illegal constructor↵ at renderWithHooks (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:11548:26)↵ at mountIndeterminateComponent (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:14926:21)↵ at beginWork (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:15914:22)↵ at beginWork$1 (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:19753:22)↵ at performUnitOfWork (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:19198:20)↵ at workLoopSync (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:19137:13)↵ at renderRootSync (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:19116:15)↵ at recoverFromConcurrentError (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:18736:28)↵ at performSyncWorkOnRoot (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:18879:28)↵ at flushSyncCallbacks (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:9119:30)"
+get stack: ƒ ()
+set stack: ƒ ()
+[[Prototype]]: Object
+ 
+Object {componentStack: "↵    at Permissions↵    at OnboardingFlow…"}

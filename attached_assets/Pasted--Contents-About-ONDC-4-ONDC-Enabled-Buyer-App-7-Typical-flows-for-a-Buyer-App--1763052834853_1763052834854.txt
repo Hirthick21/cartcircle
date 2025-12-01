@@ -1,0 +1,488 @@
+
+
+Contents
+About ONDC        4
+ONDC Enabled Buyer App        7
+Typical flows for a Buyer App        10
+ONDC APIs        12
+Buyer App services over the network        19
+Technical Details        22
+Technical Stack        23
+Third Party Integrations        23
+Payment gateway        23
+Mappls        24
+Firebase Authentication        24
+Onboarding to ONDC        25
+Signing and Verification        25
+Steps to run the API Services & Web App in the Development environment        31
+Steps to run the Mobile App in the Development environment        32
+Deployment Architecture        33
+Physical Architecture        33
+Application Deployment Steps        35
+1. Prerequisites        35
+2. How to use ansible        35
+How to become a Buyer App        37
+Network Policy Requirements        38
+Network Operations Requirements        39
+Technical Requirements        39
+Technical Support        40
+Technical Support        41
+Version Upgrade        41
+License        42
+
+CHAPTER 1: Introduction to ONDC
+About ONDC
+Open Network for Digital Commerce (ONDC) aims to democratize digital commerce by enabling an interoperable framework, for different demand side entities (also called buyer network participant or buyer NP) & supply side entities (also called seller network participant or seller NP) to transact, while providing the convenience and quality of service that is available in digital commerce today.
+ONDC participants, on the demand & supply side, define their terms & conditions and dynamically enter into a contractual relationship, by signing a digital contract, to facilitate a transaction between the buyer and seller.
+Please refer to the following links for additional information on ONDC:
+ONDC Website
+ONDC Strategy Paper - The strategy paper briefly explains India’s commerce ecosystem, building digital commerce on an open network, building blocks of ONDC as a network and its implementation
+ONDC Consulting Paper - The consulting paper elaborates about ONDC Network architecture, detailed flows for an ONDC enabled transaction determinants of trust in e-commerce, governing laws and trust-building measures conceptualized by ONDC
+ONDC technical specifications 
+ONDC Resources
+Saarthi
+Saarthi is a B2C (business-to-consumer) mobile buyer app for retail buyers, for use by the demand-side entities, to facilitate store commerce.
+A summary of high-level features is shown below:
+Feature
+Sub-Features
+Details
+Signup
+- Using email
+- Signup using Google
+Allows buyers to sign up and use Saarthi
+Discovery
+Search by
+- Product
+- Seller
+- Category
+- Location
+Home page of the buyer app. Allows a buyer to browse products, using name/ description, seller name, delivery locations etc.
+Serviceability Checks
+Checks for time & location based serviceability
+Check if a seller services the buyer’s delivery location at the current time
+Category Landing Page (CLP)
+Shows the stores for a particular category e.g. Grocery, F&B, Fashion, BPC, Electronics, Appliances, Home & Kitchen, Health & Wellness
+Store Landing Page (SLP)
+Shows catalog for a store
+Product Details Page (PDP)
+Shows details for a specific product
+Filters and Sorting
+Filter by
+- Price range
+- Provider
+- Category
+- Category-specific attributes e.g. brand, color, etc.
+- Location
+Filtering & sorting by buyer criteria as shown
+Cart Page
+Shows products selected by buyer for checkout
+Order placement
+Allow buyer to place order, and receive confirmation for expected time of delivery
+Orders Page
+- Order History
+- Order details
+Shows all buyer created orders along with current status
+Order Tracking
+Allows buyer to track fulfillment of specific orders
+Order Cancellation
+- Partial order cancellation
+- Complete order cancellation
+Allow cancellation of order or part of order
+Return
+- Return of 1 or more items
+Allow buyer to initiate return for items in an order
+Raise Ticket
+Allows buyer to raise ticket for issues with product(s), fulfillment of order
+Pages with business specific details
+Support Information
+Buyer app will have these pages, but they have to be populated with information, as per their business requirement
+Policies
+FAQs
+
+This user manual provides information on how a demand-side entity can use ONDC Saarthi to create their own buyer app, that allows their buyers to transact on ONDC.
+
+CHAPTER 2- Customizing Saarthi
+Technology Stack
+Saarthi has been developed using React Native for mobile, with a backend powered by Node.js and Python. It provides plug-n-play integration with services for payment, maps, etc. with default out-of-the-box configurations available for Razorpay (payment), Bhashini (language support), email/SMS integration, and Mappls (maps), Odoo (order management).
+Technologies Used
+Mobile Application
+React Native 18
+API Service: Client layer
+Node.js v16.*
+API Service: Protocol layer
+Python v3.7
+Database
+MongoDB
+Deployment Architecture
+
+Physical Architecture
+
+Includes the following microservices:
+Database services
+MongoDB
+Elastic search
+Postgresql
+Third-party services
+Mappls
+Razorpay
+Bhashini
+Bugzilla Service (for IGM)
+Nginx - as a load balancer and ingress
+Host Web frontend application
+SSL terminator - Expects ssl certificate to be passed or generated (using init-letsencrypt.sh file included in SDK**)
+Buyer app client - Node.js
+Interaction between the mobile app and protocol server
+Protocol Service - Python
+Responsible for enabling communication with the  ONDC network
+Acts as a catalog service ie. store item catalog
+For this operation, we’re using rabbitmq queue to handle dumping the catalog operation asynchronously
+Rabbitmq message will consist of doc-id of mongo document of untransformed on_search payload.
+Protocol-consumer will transform on_search payload and store the item catalog
+OMS (Order management and Ticketing system)
+Acts as a order management system and ticketing system
+Admin can view list of orders in the system
+Admin can view list of sellers
+Admin can view list of return requests
+Admin can view list of IGM issues/Tickets
+Out-of-the-box Integrations
+a. Razorpay
+Saarthi is integrated with the Razorpay payment gateway. However, participants can replace this with any other payment gateway as per their requirements.
+Steps to integrate with Razorpay:
+Create an account with RazorPay and obtain test account credentials.
+Follow API integration details as mentioned here
+Detailed steps:
+Create auth keys in the RazorPay console
+Setup webhook URL in console - <serverUrl>/clientApis/v2/razorpay/razorPay/webhook
+Setup keys in buyer client .env file
+After obtaining the RazorPay credentials from the console, the user needs to set keys in the mobile app as mentioned below:
+         RAZORPAY_KEY_ID="RAZORPAY_KEY_ID"
+RAZORPAY_KEY_SECRET="RAZORPAY_KEY_SECRET"
+b. Mappls (MapmyIndia)
+Mappls provides location-based information, such as:
+Get detailed address information by typing in search query
+Get list of addresses for a given PIN code
+Get state and city by PIN code
+Get Latitude and longitude of the provided address
+Mappls APIs used are:
+https://outpost.mapmyindia.com/api
+https://atlas.mapmyindia.com/api/places/search/json
+https://explore.mappls.com
+https://apis.mapmyindia.com/advancedmaps/v1
+https://atlas.mappls.com/api/places/geocode
+https://github.com/mappls-api/mappls-web-plugins/tree/main/tracking-plugin-advanced#implementation
+Mappls configuration in Saarthi:
+MMI_CLIENT_SECRET="MMI_SERVICE"
+MMI_CLIENT_ID="MMI_CLIENT_ID"
+MMI_ADVANCE_API_KEY="MMI_ADVANCE_API_KEY"
+c. Firebase Authentication
+Create the application under firebase console
+Once the application is created, visit the application and click on authentication tab
+Enable the following authentication sign-in methods in the method tab
+Email/Password
+Google
+In project settings, create different projects supported for various platforms like Android, iOS and web (this will help in downloading the config files, required for authentication)
+Configuration in Saarthi:
+Client Env
+FIREBASE_ADMIN_SERVICE_ACCOUNT="/path/firebase-service-account.json"
+d. Bugzilla
+Ticketing is through Bugzilla. Steps to add Bugzilla to Saarthi:
+Step 1:
+Go to the given url: https://your-base-url/bugzilla/admin/
+In the code, navigate to biap-bugzilla-service/bugzilla-main/conf/checksetup_answers.txt, Find this file in bugzilla repository and view or update "ADMIN_LOGIN" and "ADMIN PASSWORD"
+Login using id and password
+Then from top header menu, Click on "Administration"
+From the list of all the menus, Choose "Parameters"
+From left menu click on "Email" and choose SMTP from "mail_delivery method" dropdown
+Fill all the details given on that page, and always make sure that smtp_ssl is On
+Once all the details are filled click on "Save Changes and send test Email"
+Step 2:
+From top header menu, Go to "Preferences" and then to API Keys menu
+On API keys page, select "Generate a new API key with optional description" and enter the value of description and click on Submit changes
+After submission, copy the new API key
+Now paste this API key value in "BUGZILLA API" in env file
+Step 3:
+After updating the API key value, need to Reboot these containers: bugzilla-node-dev and bugzilla-dev-service
+e. Bhashini
+Bhashini is an AI-powered local language translation system that makes it easier to translate and transliterate catalog data in Saarthi
+Step 1:
+Go to the given url: https://bhashini.gov.in/
+Contact Support to have account created on the Bhashini portal
+Step 2:
+For API documentation refer to -  https://bhashini.gitbook.io/bhashini-apis
+Step 3:
+After receiving the API keys from Bhashini, add the following in ENV config
+BHASHINI_USERID="BHASHINI_USERID"
+BHASHINI_ULCA_API_KEY="BHASHINI_ULCA_API_KEY"
+f. SMS Gateway
+Notification to the buyer (e.g. order status) is through the Airtel SMS gateway.
+Step 1:
+Go to the given url: https://www.airtel.in/blog/business/optimizing-customer-service-with-sms-api-integration/
+Contact Support to have account created on the Airtel portal
+Step 2:
+For API documentation refer to - https://www.airtel.in/business/b2b/airtel-iq/api-docs/sms/sms-utility#tag/Bulk-SMS-APIs
+Step 3:
+After receiving the API keys, add the following in ENV config
+DLT_CUSTOMER_ID="DLT_CUSTOMER_ID"
+DLT_ENTITY_ID="DLT_ENTITY_ID"
+DLT_USERNAME="DLT_USERNAME"
+DLT_PASSWORD="DLT_PASSWORD"
+DLT_SOURCE=”DLT_SOURCE”
+DLT_MESSAGE_TYPE="DLT_MESSAGE_TYPE"
+g. Signing and Verification
+Rules for Signing and Verification
+Ed25519 signing keys (private key of at least 64 bytes, public key of at least 32 bytes)
+Libsodium for Signing and Verification
+Saarthi uses the Python PyNacl library for signing and verification. However, each NP is free to use any library for signing and verification, as per the rules above.
+Customizing look and feel
+a. Change the theme of the application:
+To update the theme of your React Native application, you can follow these steps:
+        Open theme.ts file located at  [root]/src/utils[root] path to root directory of the application
+Identify Changes Needed:
+Determine what aspects of the theme you want to update. This could include colors, fonts, spacing, etc.
+Modify Colors:
+Update color values in the colors object to match your new theme. Replace existing color values with your desired colors, ensuring consistency and accessibility.
+Adjust Typography:
+Modify font styles in the fonts object according to your new theme. Update font families, sizes, weights, and line heights as necessary.
+Test Changes:
+After making modifications, thoroughly test your application to ensure that the updated theme looks and behaves as expected across different screens and components.
+Refactor Component Styles:
+If necessary, update component styles to align with the changes made to the theme. This may involve adjusting color references, font styles, or other styling properties.
+Iterate and Refine:
+Iterate on your changes as needed, refining the theme until you achieve the desired look and feel for your application.
+b. Change the package name of the application
+Install react-native-rename:
+If you haven't installed react-native-rename yet, you can install it globally using npm or yarn. Open your terminal and run:
+npm install -g react-native-rename  Or  yarn global add react-native-rename
+Navigate to Your Project Directory:
+Open your terminal and navigate to the root directory of your React Native project.
+Run the Rename Command:
+        Once you're in the project directory, run the following command: react-native-rename <newPackageName>
+Replace <newPackageName> with your desired new package name.
+Follow the Prompts:
+After running the command, you will be prompted to confirm the renaming process. Follow the prompts and confirm the changes.
+Clean and Rebuild:
+After making these changes, it's a good idea to clean and rebuild your project to ensure everything is in sync.
+Verify:
+Test your application thoroughly on both Android and iOS devices/emulators to ensure that everything is working as expected with the new package name.
+c. Replace App Icon
+Visit MakeMyIcon Website:
+Go to the MakeMyIcon website.
+Upload Your Icon:
+Upload your app icon image to the website.
+Follow the prompts to select the desired output sizes for Android and iOS.
+Generate Icons:
+Click on the "Generate icons" button to create icons for different screen resolutions.
+Download Generated Icons:
+Once the icons are generated, download the zip file containing all the icon variants.
+For Android
+Prepare Your App Icon:
+Extract the downloaded zip file from MakeMyIcon.
+Make sure the icons are named appropriately for each resolution (e.g., ic_launcher.png for the highest resolution icon).
+Replace App Icons in Android:
+Navigate to the android/app/src/main/res directory in your React Native project.
+Replace the existing ic_launcher.png files in each of the mipmap-* directories with the corresponding icons generated by MakeMyIcon.
+Update Manifest File:
+Open android/app/src/main/AndroidManifest.xml.
+Replace the @mipmap/ic_launcher reference with @drawable/ic_launcher.
+Clean and Rebuild Your Project:
+Run cd android && ./gradlew clean from your project root directory.
+After cleaning, rebuild your project by running react-native run-android.
+For iOS
+Prepare Your App Icon:
+Extract the downloaded zip file from MakeMyIcon.
+Ensure you have icons in the required sizes for various iOS devices.
+Replace App Icons in Xcode:
+Open your React Native project in Xcode by navigating to the ios directory and opening the .xcworkspace file.
+In Xcode, navigate to the "Assets.xcassets" folder.
+Replace the existing app icons with the corresponding icons generated by MakeMyIcon.
+Clean and Rebuild Your Project:
+Clean your Xcode project by going to Product > Clean Build Folder.
+Rebuild your project by running it from Xcode or using the react-native run-ios command from your project root directory.
+Additional Tips
+Make sure your app icons have transparent backgrounds for a polished look.
+Test your app on both Android and iOS devices to ensure that the new icons are displaying correctly.
+Always keep backups of your original app icons in case you need to revert changes.
+By following these steps, you should be able to successfully create icons using MakeMyIcon and update them for your React Native app on both Android and iOS platforms.
+Publish to Google Play Store
+Generate Signed APK (Android):
+In your React Native project directory, run cd android to navigate to the Android directory.
+Run ./gradlew assembleRelease to generate the APK.
+The APK will be located in android/app/build/outputs/apk/release/app-release.apk.
+Create a Developer Account on Google Play Store:
+Go to the Google Play Console.
+Sign in with your Google account.
+Pay a one-time fee for registration.
+Create a New Application:
+Click on "Create Application" and enter the necessary details.
+Upload the APK file you generated.
+Fill in all required information like app title, description, screenshots, etc.
+Pricing & Distribution:
+Set pricing if necessary and choose countries where you want your app to be available.
+Content Rating:
+Complete the content rating questionnaire.
+Review and Publish:
+Once all information is provided, review everything carefully.
+Click on "Publish" to submit your app for review.
+Publish to iOS App Store
+Generate iOS Distribution Certificate:
+In Xcode, go to Preferences > Accounts and add your Apple Developer Account.
+In your React Native project, open the project in Xcode (.xcworkspace file).
+Configure code signing in Xcode and let Xcode create a distribution certificate for you.
+Generate Provisioning Profiles:
+In Xcode, go to the project settings.
+Choose your target and select the appropriate provisioning profile for distribution.
+Archive Your App:
+In Xcode, select Product > Archive.
+Follow the prompts and let Xcode archive your app.
+Upload to App Store Connect:
+Once the archive is created, Xcode will prompt you to distribute it.
+Select "App Store Connect" and follow the steps to upload your archive.
+Fill in App Information:
+Log in to App Store Connect.
+Create a new app entry if you haven't already.
+Fill in all required information such as app name, description, screenshots, etc.
+App Review Process:
+Submit your app for review after completing all necessary information.
+Apple will review your app, and once approved, it will be available on the App Store.
+Application Deployment Steps
+Salient features of deployment:
+All services are run via containers
+All service are separate repo and contains docker file to build the image
+Only nginx 80/443 needs to be exposed to outside world
+All other communication happens between nginx and other 4 services
+On single node it utilizes docker-compose installed
+All services are part of docker-compose.yaml
+For the app, ONDC is publishing all images to public docker repository and using docker-compose-with-images.yaml to deploy all services
+How to build a image
+Go to directory containing the dockerfile
+Run following to build the image
+docker build -t ondc/ondc-python-protocol-layer:pr-sse-v7.1.1
+All environment variables are kept in .env file
+A local .env file must be present in same folder as docker-compose.yaml
+Sample env file (without any creds) - https://github.com/ONDC-Official/ondc-sdk/blob/main/.env-local
+Prerequisites
+For the white label app, ONDC has used ansible to deploy and generate ssl certificates
+The public key of the node to generate ssl and make it available for the seller apps to identify the buyer app
+Docker and docker compose needs to be installed
+Access to github repository to clone
+Create a copy of .env-local with valid credentials and name it .env-<stagename>. E.g. .env-prod
+Using ansible
+We’re using Ansible for installing all the services and to generate an SSL certificate. To use ansible scripts for deployment, please use the following commands:
+ansible-playbook -i ansible_hosts buyer-app-install-for-ssl.yaml
+It will ask for three parameters,
+    Hostname - Needs to be mentioned in the hostname file
+    Domain To Host - E.g. http://buyer-app.ondc.org
+    Stage Name - Used for copying the .env file, e.g. if an env file .env-prod is created, then the value should be “-prod”
+For HTTPS deployment:
+The above process will allow you to deploy the application and have an SSL certificate generated, but the NGINX server will not be listening for requests on the 443 port. To enable it to listen to 443, you have to run another ansible file that has the right NGINX configuration picked from the repo. This way, it is a 2-step process, where we do the above listed process for deployment and then run another script on top of that to finish for SSL.
+For running the second file, you can use the following commands:
+ansible-playbook -i ansible_hosts buyer-app-run.yaml
+It will again be asking for three parameters, please make sure to use the same one’s as before,
+Hostname - Needs to be mentioned in the hostname file
+Domain To Host - E.g. http://buyer-app.ondc.org
+Stage Name - Used for copying the .env file, e.g. if an env file .env-prod is created, then the value should be “-prod”
+Developer
+Steps to run the API Services & Web App in the Development environment
+Clone the application source code from the ONDC Github repository.  
+Detailed steps to follow:
+Ensure to pull all subdirectories, CMD
+A ngrok instance is required to be running locally to publish to the internet
+install ngrok
+brew install --cask ngrok
+ngrok http 5555
+Copy the url to the clipboard and paste in BAP_URL and PROTOCOL_BASE_URL in .env-local
+Next step is to setup the docker-compose env file
+Pick the .env-local file and ask to replace the necessary keys (mainly the app URLs and 3rd party integration keys) with the keys procured
+The Database configuration details are defined in the .env and docker-compose file
+Get firebase-service-account.json(this can be fetched from firebase console too) and juspay.pem from admin and place them under the path biap-client-node-js/config/dev
+Run
+docker-compose -f docker-compose-for-local.yaml --env-file .env-local up -d
+Open http://localhost
+Steps to run the Mobile App in the Development environment
+Clone the application source code from the ONDC Github repository.  
+If you want to rename the app name and package name then use react-native-rename to rename the app name and package name. In the current state of this project, it should give you no issues at all, just run the script, delete your node modules and reinstall them and you should be good to go.
+Keep in mind that this library can cause trouble if you are renaming a project that uses `Pods` on the iOS side.
+Install depend packages using npm install --legacy-peer-deps command.
+Move to the ios folder and install all iOS dependencies using pod install --repo-update
+Download the Firebase config file generated from the Firebase console.
+In the root directory of project create files named as .env.development, .env.staging, .env.preprod, .env.production
+Copy and paste .env.example files content and assign appropriate values to the keys.
+iOS platform
+Create a folder named `Firebase` under `ios/[app_folder]`.
+Inside the Firebase folder, create four folders named `Staging`, `Development`, `Preprod`, and `Production`.
+In each of these folders, add the corresponding `GoogleService-Info.plist` files downloaded from Firebase.
+Android Platform
+Inside the `android/app` folder, create four folders named `staging`, `development`, `preprod`, and `production`.
+In each of these folders, add the corresponding `google-services.json` files downloaded from Firebase.
+Use the following commands to run the application in different environments
+Development: `npm run ios:development` or `npm run android:development`
+Staging: `npm run ios:staging` or `npm run android:staging`
+Preprod: `npm run ios:preprod` or `npm run android:preprod`
+Prod: `npm run ios:prod` or `npm run android:prod`
+
+CHAPTER 3 - APIs
+search
+Buyer NP sends /search request for higher level category (Grocery, F&B, etc.) to gateway to broadcast to all Seller NPs that have catalogs for that category
+Seller NPs respond, by sending catalogs, using /on_search callback, which is then processed and displayed to buyer
+
+select
+/select: request quote & availability for items by passing the items in the request payload directly to the Seller NP
+/on_select: Seller NP responds with a quote for selected items, their availability, offers applicable, etc.
+
+init
+/init: initiate checkout process by providing delivery address, contact information and by agreeing to the Seller NP terms & conditions
+/on_init: seller responds with the final quote for the cart, after agreeing to the buyer NP terms & conditions
+
+confirm
+/confirm: place order on the seller after selecting payment option (prepaid, cash-on-delivery) and making payment for prepaid
+/on_confirm: seller NP responds and either auto-accepts the order or forwards to seller for acceptance
+/confirm & on_confirm constitute the digital contract between the buyer NP and seller NP for the order
+After the order is placed, the fulfillment will be completed by the seller, which will provide interim status updates for the buyer
+
+status
+/status: buyer or buyer NP can request current status for the order
+/on_status: seller can send the current status, either in response to /status or can push updates on status change until the terminal state
+track
+Used for real-time tracking of hyperlocal orders or interim states for inter-city orders
+IGM
+Used for communicating tickets raised by buyer to the corresponding seller for resolution
+API
+Description
+/issue
+Complainant sends ticket using /issue, with expected time for response & resolution
+/on_issue
+Respondent responds to ticket sent, with status update
+/issue_status
+Complainant requests current status of ticket
+/on_issue_status
+Respondent provides status update for ticket, either in response to request by complainant or as push updates until resolution
+
+API flows of the framework
+
+CHAPTER 4 - Becoming a Buyer NP
+Any entity that wants to be live on ONDC has to go through the following stages for onboarding. The Network Integration Guide gives details on each of these steps:
+Staging: develop buyer app, test API flows
+Pre-Production: integration testing with other seller NPs in a production-like environment (i.e. all integration flows, but without transfer of money or movement of goods), verification of production readiness by ensuring compliance to policy, operations and tech requirements
+Production: transact with other NPs, with transfer of money and movement of goods
+Network Policy Requirements
+ONDC policy requirements define how NPs will legally behave and operate on the network. In any individual sale, the Buyer and Seller are bound by the terms of the sale, and the title for the goods is transferred from Seller to Buyer through the invoice. The Buyer has a pre-existing legal relationship with the Buyer App (through the Buyer App’s terms & conditions), and the Seller has a pre-existing relationship with the Seller App (through the Seller App’s merchant agreement, or terms & conditions). There is no direct legal relationship between a Buyer and Seller App, or Seller and Buyer App.
+Complete ONDC network policies can be found here.
+NPs have to sign a Network Participant Agreement, which signifies that the NP has given assent to all ONDC network policy requirements.
+Network Operations Requirements
+ONDC operations team shall check if the app has implemented the necessary compliances from a business operations perspective. The requirements have been detailed out in the "Instructions for Ops Readiness".
+Technical Requirements
+ONDC technology team shall check if the app has complied with API specs as per the contract document.
+Onboarding to ONDC
+For onboarding to ONDC, please follow the steps mentioned here.
+
+CHAPTER 5 - Technical Support
+Technical Support
+For the configuration related issues, please reach out to the ONDC technical support team at refappsupport@ondc.org.
+Version Upgrade
+Currently, the white label buyer app is only available on Android OS (supported versions: V11, 12 ans 13). The iOS version is part of the release roadmap. The release calendar for the upgrade will be made available on ONDC GitHub repo.
+The buyer app will be upgraded as ONDC enhances the network protocol and introduces new components that will enable a transaction on ONDC.
+License
+Copyright 2023 Open Network for Digital Commerce Ltd
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE

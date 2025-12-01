@@ -1,0 +1,14 @@
+[vite] connecting...
+[vite] connected.
+onComplete is not a function
+at handleContinue (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/src/pages/permissions.tsx:66:5)
+at HTMLUnknownElement.callCallback2 (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:3674:22)
+at Object.invokeGuardedCallbackDev (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:3699:24)
+at invokeGuardedCallback (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:3733:39)
+at invokeGuardedCallbackAndCatchFirstError (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:3736:33)
+at executeDispatch (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:7014:11)
+at processDispatchQueueItemsInOrder (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:7034:15)
+at processDispatchQueue (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:7043:13)
+at dispatchEventsForPlugins (https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:7051:11)
+at https://e75c33ed-785c-4de2-a96d-34ff44c98118-00-336rsc3gr9psk.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=03185dfd:7174:20
+onComplete is not a function

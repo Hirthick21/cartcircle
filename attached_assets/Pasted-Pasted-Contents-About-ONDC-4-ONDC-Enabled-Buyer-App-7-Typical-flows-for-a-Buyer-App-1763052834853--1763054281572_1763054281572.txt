@@ -1,0 +1,129 @@
+Pasted--Contents-About-ONDC-4-ONDC-Enabled-Buyer-App-7-Typical-flows-for-a-Buyer-App--1763052834853_1763052834854.txt
+
+
+Contents
+About ONDC        4
+ONDC Enabled Buyer App        7
+Typical flows for a Buyer App        10
+ONDC APIs        12
+Buyer App services over the network        19
+Technical Details        22
+Technical Stack        23
+Third Party Integrations        23
+Payment gateway        23
+Mappls        24
+Firebase Authentication        24
+Onboarding to ONDC        25
+Signing and Verification        25
+Steps to run the API Services & Web App in the Development environment        31
+Steps to run the Mobile App in the Development environment        32
+Deployment Architecture        33
+Physical Architecture        33
+Application Deployment Steps        35
+1. Prerequisites        35
+2. How to use ansible        35
+How to become a Buyer App        37
+Network Policy Requirements        38
+Network Operations Requirements        39
+Technical Requirements        39
+Technical Support        40
+Technical Support        41
+Version Upgrade        41
+License        42
+
+CHAPTER 1: Introduction to ONDC
+About ONDC
+Open Network for Digital Commerce (ONDC) aims to democratize digital commerce by enabling an interoperable framework, for different demand side entities (also called buyer network participant or buyer NP) & supply side entities (also called seller network participant or seller NP) to transact, while providing the convenience and quality of service that is available in digital commerce today.
+ONDC participants, on the demand & supply side, define their terms & conditions and dynamically enter into a contractual relationship, by signing a digital contract, to facilitate a transaction between the buyer and seller.
+Please refer to the following links for additional information on ONDC:
+ONDC Website
+ONDC Strategy Paper - The strategy paper briefly explains India’s commerce ecosystem, building digital commerce on an open network, building blocks of ONDC as a network and its implementation
+ONDC Consulting Paper - The consulting paper elaborates about ONDC Network architecture, detailed flows for an ONDC enabled transaction determinants of trust in e-commerce, governing laws and trust-building measures conceptualized by ONDC
+ONDC technical specifications 
+ONDC Resources
+Saarthi
+Saarthi is a B2C (business-to-consumer) mobile buyer app for retail buyers, for use by the demand-side entities, to facilitate store commerce.
+A summary of high-level features is shown below:
+Feature
+Sub-Features
+Details
+Signup
+- Using email
+- Signup using Google
+Allows buyers to sign up and use Saarthi
+Discovery
+Search by
+- Product
+- Seller
+- Category
+- Location
+Home page of the buyer app. Allows a buyer to browse products, using name/ description, seller name, delivery locations etc.
+Serviceability Checks
+Checks for time & location based serviceability
+Check if a seller services the buyer’s delivery location at the current time
+Category Landing Page (CLP)
+Shows the stores for a particular category e.g. Grocery, F&B, Fashion, BPC, Electronics, Appliances, Home & Kitchen, Health & Wellness
+Store Landing Page (SLP)
+Shows catalog for a store
+Product Details Page (PDP)
+Shows details for a specific product
+Filters and Sorting
+Filter by
+- Price range
+- Provider
+- Category
+- Category-specific attributes e.g. brand, color, etc.
+- Location
+Filtering & sorting by buyer criteria as shown
+Cart Page
+Shows products selected by buyer for checkout
+Order placement
+Allow buyer to place order, and receive confirmation for expected time of delivery
+Orders Page
+- Order History
+- Order details
+Shows all buyer created orders along with current status
+Order Tracking
+Allows buyer to track fulfillment of specific orders
+Order Cancellation
+- Partial order cancellation
+- Complete order cancellation
+Allow cancellation of order or part of order
+Return
+- Return of 1 or more items
+Allow buyer to initiate return for items in an order
+Raise Ticket
+Allows buyer to raise ticket for issues with product(s), fulfillment of order
+Pages with business specific details
+Support Information
+Buyer app will have these pages, but they have to be populated with information, as per their business requirement
+Policies
+FAQs
+
+This user manual provides information on how a demand-side entity can use ONDC Saarthi to create their own buyer app, that allows their buyers to transact on ONDC.
+
+CHAPTER 2- Customizing Saarthi
+Technology Stack
+Saarthi has been developed using React Native for mobile, with a backend powered by Node.js and Python. It provides plug-n-play integration with services for payment, maps, etc. with default out-of-the-box configurations available for Razorpay (payment), Bhashini (language support), email/SMS integration, and Mappls (maps), Odoo (order management).
+Technologies Used
+Mobile Application
+React Native 18
+API Service: Client layer
+Node.js v16.*
+API Service: Protocol layer
+Python v3.7
+Database
+MongoDB
+Deployment Architecture
+
+Physical Architecture
+
+Includes the following microservices:
+Database services
+MongoDB
+Elastic search
+Postgresql
+Third-party services
+Mappls
+Razorpay
+Bhashini...

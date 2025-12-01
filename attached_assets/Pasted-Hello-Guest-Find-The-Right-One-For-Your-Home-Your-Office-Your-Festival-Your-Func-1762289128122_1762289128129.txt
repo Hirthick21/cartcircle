@@ -1,0 +1,302 @@
+Hello, Guest 👋
+
+Find The Right One For
+Your Home 🏠
+Your Office 🏢
+Your Festival 🎆
+Your Function 💒
+Your Gathering 👥
+Your Celebration 🎉
+Your Event 📅
+Your Party 🥳
+
+
+Search for products...
+
+Limited Time Offer
+UP TO 70% OFF
+Carry Class, Not Just Stuff
+
+Modern Style for Work, Travel, and Daily Commutes
+
+Carry Class, Not Just Stuff
+
+Limited Time Offer
+Free Shipping
+Fresh Produce
+
+Farm fresh vegetables and fruits
+
+Fresh Produce
+
+Limited Time Offer
+UP TO 40% OFF
+Flawless and Timeless
+
+Natural & Herbal Products for Glowing, Nourishing Skin
+
+Flawless and Timeless
+
+Categories
+Show All
+All
+All
+Grocery
+Grocery
+Fashion
+Fashion
+Electronics
+Electronics
+Home & Kitchen
+Home & Kitchen
+Health
+Health
+Beauty
+Beauty
+Books
+Books
+Sports
+Sports
+Automotive
+Automotive
+Baby & Kids
+Baby & Kids
+Pets
+Pets
+Appliances
+Appliances
+Toys
+Toys
+Agriculture
+Agriculture
+Hardware
+Hardware
+Stores near you
+View All
+🏪
+Balaji Bengaluru Departmental
+
+Complete grocery store with fresh produce
+
+4.2
+•
+10+ items
+20-30 min
+Grocery
+Health & Wellness
+🍎
+Apple Supermarket
+
+Premium supermarket with fresh fruits
+
+4.5
+•
+10+ items
+15-25 min
+Fruits
+Electronics
+🛒
+BuyNxt ONDC
+
+Tech store specializing in electronics
+
+4
+•
+10+ items
+30-45 min
+Electronics
+Smart Home
+👟
+Adidas Store - Bengaluru
+
+Premium sports and fashion store
+
+4.3
+•
+10+ items
+25-35 min
+Fashion
+Sports
+🏬
+Big Bazaar
+
+One-stop shop for all your needs
+
+4.1
+•
+15+ items
+40-50 min
+Grocery
+Fashion
+🥬
+Reliance Fresh
+
+Fresh groceries and vegetables
+
+4.4
+•
+12+ items
+20-30 min
+Grocery
+Fruits
+Gift Cards
+View All
+💎
+5%
+Kalyan Jewellers
+
+🌲
+9%
+Woodland
+
+🧵
+9%
+Fabindia
+
+📦
+2%
+Amazon
+
+✈️
+7%
+MakeMyTrip
+
+👕
+UP TO 15%
+Jockey
+
+Recently Viewed
+View All
+Baltra 1.8L 1500W Stainless Steel Electric Kettle
+Baltra 1.8L 1500W Stainless Steel Electric Kettle
+Seller - BALTRA
+
+1 unit
+
+₹525
+₹1,075
+51% OFF
+Free Shipping
+Add to Cart
+Walta Elite Swar Wired Earphone - Black
+Walta Elite Swar Wired Earphone - Black
+Seller - TechBzar
+
+1 unit
+
+₹99
+₹199
+50% OFF
+Add to Cart
+ONDC Sellers on Network
+Verified Sellers
+
+
+Organic Spices
+Starting at ₹20
+
+Organic Spices
+Organic Spice Co
+
+Rice Selection
+Starting at ₹95
+
+Rice Selection
+Premium Grains
+
+Top Deals by Brands
+Exclusive Offers
+
+
+Footwear Collection
+Up to 64% OFF
+
+Footwear Collection
+Paragon
+
+Electronics
+Up to 87% OFF
+
+Electronics
+Hammer
+
+shop on Xtra Mart
+Premium Features
+Contract Partners
+Partner Seller Network
+Exclusive Discounts
+
+Exclusive partnerships with local sellers for better prices
+
+Up to 25% OFF
+Min Order: ₹1,500
+
+Buy Now, Pay Later
+Monthly Credit Option
+0% Interest
+
+Shop now, pay between 10th-15th of next month
+
+Credit Limit: ₹10,000
+No Interest
+
+Festival Delivery
+Event Place Delivery
+Tamil Nadu Special
+
+Direct delivery to your festival, function, or gathering venue
+
+Free Delivery
+Min Order: ₹2,000
+
+Featured Products
+View All
+No products found
+Check back later for new products
+
+Best Price
+Show All
+Fresh Tomatoes
+Fresh Tomatoes
+/kg
+
+Rp 15,000
+Rp 20,000
+Add to Cart
+Organic Chicken
+Organic Chicken
+/kg
+
+Rp 35,000
+Rp 45,000
+Add to Cart
+My Orders
+
+Support
+
+
+Home
+
+Xtra Mart
+
+Search
+
+Wishlist
+
+Profile
+
+Select Location
+Move map to adjust pin
+
+Close
+[plugin:runtime-error-plugin] Cannot read properties of undefined (reading '0')
+    at Object.Q [as aC] (https://901daa80-1e2d-4bab-9f8c-7d4277023889-00-2qz8accppcah5.pike.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/mapbox-gl.js?v=a8a5b081:203:28)
+
+
+
+
+
+
+    at new Oa (https://901daa80-1e2d-4bab-9f8c-7d4277023889-00-2qz8accppcah5.pike.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/mapbox-gl.js?v=a8a5b081:29425:64
+Click outside, press Esc key, or fix the code to dismiss.
+You can also disable this overlay by setting server.hmr.overlay to false in vite.config.js.
