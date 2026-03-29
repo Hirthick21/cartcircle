@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -33,6 +33,7 @@ export function PartnerSellersModal({ isOpen, onClose }: PartnerSellersModalProp
             <ShoppingBag className="w-5 h-5 text-orange-600" />
             Partner Sellers Network
           </DialogTitle>
+          <DialogDescription className="sr-only">Browse our network of verified partner sellers</DialogDescription>
         </DialogHeader>
         
         <div className="space-y-4">

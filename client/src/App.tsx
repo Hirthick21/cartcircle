@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { CartProvider } from "@/contexts/cart-context";
 
 // Import pages directly - no lazy loading
 import Home from "@/pages/home";
@@ -86,7 +87,6 @@ function AppRoutes() {
       <Route path="/rating/:orderId" component={Rating} />
       <Route path="/xtra-mart" component={XtraMart} />
       <Route path="/product/:id" component={ProductDetail} />
-      <Route path="/search" component={Search} />
       <Route path="/stores" component={Stores} />
       <Route path="/store/:id" component={StoreDetail} />
       <Route path="/wishlist" component={Wishlist} />
@@ -108,8 +108,10 @@ function App() {
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <AppRoutes />
-          <Toaster />
+          <CartProvider>
+            <AppRoutes />
+            <Toaster />
+          </CartProvider>
         </TooltipProvider>
       </QueryClientProvider>
     </ErrorBoundary>

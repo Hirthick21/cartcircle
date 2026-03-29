@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
@@ -111,6 +111,7 @@ export function RewardsModal({ isOpen, onClose }: RewardsModalProps) {
             <Gift className="w-5 h-5 text-yellow-600" />
             Smart Rewards System
           </DialogTitle>
+          <DialogDescription className="sr-only">View and redeem your loyalty rewards and points</DialogDescription>
         </DialogHeader>
         
         <div className="space-y-6">

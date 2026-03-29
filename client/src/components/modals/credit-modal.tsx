@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -67,6 +67,7 @@ export function CreditModal({ isOpen, onClose }: CreditModalProps) {
             <CreditCard className="w-5 h-5 text-blue-600" />
             Monthly Credit Options
           </DialogTitle>
+          <DialogDescription className="sr-only">Choose and manage your monthly credit plan</DialogDescription>
         </DialogHeader>
         
         <div className="space-y-6">

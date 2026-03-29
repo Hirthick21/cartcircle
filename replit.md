@@ -12,7 +12,7 @@ Preferred communication style: Simple, everyday language.
 The client-side application is built using React 18 with TypeScript, following a mobile-first responsive design approach. The architecture uses a component-based structure with shadcn/ui components for consistent styling and behavior. Key architectural decisions include:
 
 - **Routing**: Wouter for lightweight client-side routing with conditional rendering based on authentication state
-- **State Management**: TanStack Query (React Query) for server state management and caching, eliminating the need for global state management
+- **State Management**: TanStack Query (React Query) for server state management and caching. Cart state is managed via a React Context (`client/src/contexts/cart-context.tsx`) and exposed through the `useCart()` hook — all components share a single cart instance backed by `localStorage`
 - **Styling**: Tailwind CSS with CSS variables for theming, providing a design system based on shadcn/ui
 - **UI Components**: Radix UI primitives wrapped in custom components for accessibility and consistency
 

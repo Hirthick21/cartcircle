@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -12,10 +12,11 @@ interface LocationModalProps {
   onLocationSelect?: (location: string) => void;
 }
 
-const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string;
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string | undefined;
 
-// Set Mapbox access token
-mapboxgl.accessToken = MAPBOX_TOKEN;
+if (MAPBOX_TOKEN) {
+  mapboxgl.accessToken = MAPBOX_TOKEN;
+}
 
 export function LocationModal({ open, onOpenChange, onLocationSelect }: LocationModalProps) {
   const { toast } = useToast();
@@ -716,6 +717,7 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
                 </div>
               </div>
             </DialogTitle>
+            <DialogDescription className="sr-only">Move the map pin to select your delivery location</DialogDescription>
           </DialogHeader>
 
           <div className="flex-1 relative overflow-hidden">
@@ -935,6 +937,7 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
               <p className="text-sm text-gray-500 mt-1">Where should we deliver?</p>
             </div>
           </DialogTitle>
+          <DialogDescription className="sr-only">Search for or select your delivery address</DialogDescription>
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto px-6 pb-6">

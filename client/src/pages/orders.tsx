@@ -17,7 +17,7 @@ export default function Orders() {
   const { toast } = useToast();
 
   const { data: ordersData, isLoading: ordersLoading } = useQuery({
-    queryKey: ['/api/orders', { status: activeTab === 'ongoing' ? undefined : 'completed' }],
+    queryKey: ['/api/orders'],
     enabled: isAuthenticated && !isLoading,
   });
 
@@ -113,7 +113,7 @@ export default function Orders() {
             <i className="fas fa-box text-primary text-lg"></i>
             <h2 className="text-lg font-bold text-gray-900">Order History</h2>
           </div>
-          <p className="text-gray-600 font-medium mt-1 text-sm">Search for products from thousands of sellers</p>
+          <p className="text-gray-600 font-medium mt-1 text-sm">View and manage all your past and current orders</p>
         </div>
 
         {/* Order Tabs */}

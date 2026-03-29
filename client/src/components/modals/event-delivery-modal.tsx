@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -116,6 +116,7 @@ export function EventDeliveryModal({ isOpen, onClose }: EventDeliveryModalProps)
               <Truck className="w-5 h-5 text-purple-600" />
               Book Custom Event Delivery
             </DialogTitle>
+            <DialogDescription className="sr-only">Schedule a custom delivery for your event or special occasion</DialogDescription>
           </DialogHeader>
           
           <div className="space-y-4">
@@ -208,6 +209,7 @@ export function EventDeliveryModal({ isOpen, onClose }: EventDeliveryModalProps)
             <Truck className="w-5 h-5 text-purple-600" />
             Event Place Delivery
           </DialogTitle>
+          <DialogDescription className="sr-only">Schedule delivery directly to your event venue</DialogDescription>
         </DialogHeader>
         
         <div className="space-y-4">
