@@ -5,6 +5,7 @@ import { queryClient } from "@/lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/contexts/cart-context";
+import { OfflineScreen } from "@/components/offline-screen";
 
 // Import pages directly - no lazy loading
 import Home from "@/pages/home";
@@ -109,6 +110,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <CartProvider>
+            <OfflineScreen />
             <AppRoutes />
             <Toaster />
           </CartProvider>
