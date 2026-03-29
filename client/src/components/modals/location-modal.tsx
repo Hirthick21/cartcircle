@@ -12,10 +12,7 @@ interface LocationModalProps {
   onLocationSelect?: (location: string) => void;
 }
 
-// Initialize Mapbox access token
-// NOTE: It's highly recommended to use environment variables for API keys.
-// For example: const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGlyYW5hYSIsImEiOiJjbWhrejQzcHQxOXkyMm1xdnV1cDA5YTJyIn0.bOd7U93fxAbb3_bPeSB8-w';
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string;
 
 // Set Mapbox access token
 mapboxgl.accessToken = MAPBOX_TOKEN;
