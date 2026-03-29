@@ -280,34 +280,6 @@ export default function XtraMart() {
           </CardContent>
         </Card>
 
-        {/* Feature Statistics Card */}
-        <Card className="overflow-hidden shadow-lg border-0 bg-gradient-to-br from-gray-50 to-blue-50">
-          <CardContent className="p-4">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 font-sans">
-              Platform Statistics
-            </h3>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">50+</div>
-                <div className="text-xs text-gray-600">Partner Sellers</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">₹5L+</div>
-                <div className="text-xs text-gray-600">Credit Disbursed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600">200+</div>
-                <div className="text-xs text-gray-600">Events Delivered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-yellow-600">1000+</div>
-                <div className="text-xs text-gray-600">Active Members</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Bottom spacing for navigation */}
         <div className="pb-20"></div>
         </div>
