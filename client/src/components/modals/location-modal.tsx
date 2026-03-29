@@ -17,11 +17,8 @@ interface LocationModalProps {
 // For example: const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiaGlyYW5hYSIsImEiOiJjbWhrejQzcHQxOXkyMm1xdnV1cDA5YTJyIn0.bOd7U93fxAbb3_bPeSB8-w';
 
-// Set your Mapbox access token with validation
-// const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
-// if (MAPBOX_TOKEN) {
-//   mapboxgl.accessToken = MAPBOX_TOKEN;
-// }
+// Set Mapbox access token
+mapboxgl.accessToken = MAPBOX_TOKEN;
 
 export function LocationModal({ open, onOpenChange, onLocationSelect }: LocationModalProps) {
   const { toast } = useToast();
