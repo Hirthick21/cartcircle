@@ -1056,8 +1056,8 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
                   className="w-full flex items-start space-x-3 p-3 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors text-left"
                   data-testid="button-address-home"
                 >
-                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <i className="fas fa-home text-green-600 text-xs"></i>
+                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i className="fas fa-home text-orange-500 text-xs"></i>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 text-sm mb-1">Home</p>
@@ -1073,8 +1073,8 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
                   className="w-full flex items-start space-x-3 p-3 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors text-left"
                   data-testid="button-address-work"
                 >
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <i className="fas fa-briefcase text-blue-600 text-xs"></i>
+                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i className="fas fa-briefcase text-orange-500 text-xs"></i>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 text-sm mb-1">Work</p>
@@ -1090,8 +1090,8 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
                   className="w-full flex items-start space-x-3 p-3 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors text-left"
                   data-testid="button-address-friend"
                 >
-                  <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <i className="fas fa-heart text-purple-600 text-xs"></i>
+                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i className="fas fa-heart text-orange-500 text-xs"></i>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 text-sm mb-1">Friend's Place</p>
