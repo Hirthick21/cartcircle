@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { Home, Briefcase, Users, ChevronRight } from "lucide-react";
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -1056,16 +1057,16 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
                   className="w-full flex items-start space-x-3 p-3 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors text-left"
                   data-testid="button-address-home"
                 >
-                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <i className="fas fa-home text-orange-500 text-xs"></i>
+                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Home className="w-4 h-4 text-gray-600" strokeWidth={1.75} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 text-sm mb-1">Home</p>
-                    <p className="text-xs text-gray-600 break-words leading-relaxed">
+                    <p className="text-xs text-gray-500 break-words leading-relaxed">
                       123 MG Road, Bengaluru, Karnataka 560001
                     </p>
                   </div>
-                  <i className="fas fa-chevron-right text-gray-400 text-xs flex-shrink-0 mt-2"></i>
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1" strokeWidth={1.75} />
                 </button>
 
                 <button
@@ -1073,16 +1074,16 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
                   className="w-full flex items-start space-x-3 p-3 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors text-left"
                   data-testid="button-address-work"
                 >
-                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <i className="fas fa-briefcase text-orange-500 text-xs"></i>
+                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Briefcase className="w-4 h-4 text-gray-600" strokeWidth={1.75} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 text-sm mb-1">Work</p>
-                    <p className="text-xs text-gray-600 break-words leading-relaxed">
+                    <p className="text-xs text-gray-500 break-words leading-relaxed">
                       45 Brigade Road, Bengaluru, Karnataka 560025
                     </p>
                   </div>
-                  <i className="fas fa-chevron-right text-gray-400 text-xs flex-shrink-0 mt-2"></i>
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1" strokeWidth={1.75} />
                 </button>
 
                 <button
@@ -1090,16 +1091,16 @@ export function LocationModal({ open, onOpenChange, onLocationSelect }: Location
                   className="w-full flex items-start space-x-3 p-3 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors text-left"
                   data-testid="button-address-friend"
                 >
-                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <i className="fas fa-heart text-orange-500 text-xs"></i>
+                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Users className="w-4 h-4 text-gray-600" strokeWidth={1.75} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-gray-900 text-sm mb-1">Friend's Place</p>
-                    <p className="text-xs text-gray-600 break-words leading-relaxed">
+                    <p className="text-xs text-gray-500 break-words leading-relaxed">
                       78 Koramangala 4th Block, Bengaluru, Karnataka 560034
                     </p>
                   </div>
-                  <i className="fas fa-chevron-right text-gray-400 text-xs flex-shrink-0 mt-2"></i>
+                  <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1" strokeWidth={1.75} />
                 </button>
               </div>
             </div>
