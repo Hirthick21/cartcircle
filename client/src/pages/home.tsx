@@ -485,6 +485,32 @@ function Home() {
             </MenuSheet>
           </div>
         </div>
+
+        {/* Groceries decorative image — curvy bottom blend */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden"
+          style={{ height: '72%' }}
+        >
+          <div
+            className="absolute bottom-0 left-0 right-0 overflow-hidden"
+            style={{
+              height: '100%',
+              borderRadius: '55% 55% 0 0 / 35% 35% 0 0',
+            }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+              alt=""
+              className="w-full h-full object-cover object-bottom"
+              style={{
+                opacity: 0.1,
+                mixBlendMode: 'overlay',
+                maskImage: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)',
+              }}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Seamless Blend Section - Ultra smooth gradient from orange to peach to white */}
